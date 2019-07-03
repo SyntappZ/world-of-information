@@ -1,31 +1,119 @@
 <template>
   <div id="app">
+    <div id="background"></div>
+
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <div class="container">
+        <div class="title-box left">
+          <p class="small-title">
+            <span class="title">world</span> of information
+          </p>
+        </div>
+        <div class="right">
+          <div class="link-box">
+            <router-link to="/">Home</router-link>
+          </div>
+
+          <div class="link-box">
+            <router-link to="/MainPage">Maps</router-link>
+          </div>
+
+          <div class="link-box">
+            <router-link to="/Contact">Contact</router-link>
+          </div>
+        </div>
+      </div>
     </div>
-    <router-view/>
+    <router-view />
+    <Footer />
   </div>
 </template>
 
+<script>
+import Footer from './components/Footer'
+export default {
+  components: {
+    Footer
+  }
+}
+</script>
+
+
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Raleway", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #fff;
+  background: linear-gradient(90deg, rgb(136, 2, 219), #00c0c2);
 }
 #nav {
-  padding: 30px;
+  border-bottom: 1px solid rgba(207, 207, 207, 0.445);
+  min-height: 8vh;
+  height:auto;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #fff;
+  text-align: right;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: rgb(61, 252, 255);
+}
+.title {
+  font-family: "Audiowide", cursive;
+  margin: 0;
+}
+.small-title {
+  font-weight: 400;
+  font-size: 20px;
+  margin: 0;
+  font-family: "Raleway", arial, sans-serif;
+}
+.link-box {
+  line-height: 8vh;
+  position: relative;
+  top: 0;
+  display: inline-block;
+  width: auto;
+  height: 8vh;
+  margin-left: 0;
+  padding-right: 8px;
+  padding-left: 8px;
+  color: #fff;
+  border-bottom: 2px solid transparent;
+}
+
+.title-box {
+  line-height: 8vh;
+  position: relative;
+  top: 0;
+  display: inline-block;
+  width: auto;
+  height: 8vh;
+  color: #fff;
+}
+.glow {
+   text-shadow: 0 0 20px #fff;
+}
+.link-box:hover {
+  border-bottom: solid 2px #fff;
+  text-shadow: 0 0 20px #fff;
+}
+.row {
+  margin: 0;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+
+@media (max-width: 600px) {
+  
 }
 </style>
