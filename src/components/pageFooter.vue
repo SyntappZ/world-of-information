@@ -1,12 +1,12 @@
 <template>
-  <div class="footer">
+  <div class="pageFooter">
    
   </div>
 </template>
 
 <script>
 export default {
-  name: "footer",
+  name: "pageFooter",
 
   data() {
     return {
@@ -18,7 +18,7 @@ export default {
 
 
 <style scoped>
-    .footer{
+    .pageFooter{
         width: 100%;
         min-height: 30vh;
         height: auto;

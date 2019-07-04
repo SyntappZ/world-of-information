@@ -4,40 +4,31 @@
       <div class="row">
         <div class="col s12 m6">
           <div class="left-welcome text-left">
-           
-          </div>
-          
-        </div>
-        <div class="col s12 m6">
-          <div class="right-welcome">
-            <div class="img">
-             
+            <div class="section">
+              <h3 class="glow">Welcome To</h3>
+              <h3 class="glow">World Of Information</h3>
+
+              <p class="arial">
+                WOI is a site to out places on
+                earth and get information about that area.
+                You can use the map to search or use the search bar for
+                specific locations.
+              </p>
+              <button class="btns waves-effect waves-light">go to maps</button>
             </div>
           </div>
         </div>
+        <div class="col s12 m6">
+          <div class="right-welcome">
+            <!-- Image by Ricardo_Duque from Pixabay   -->
+            <img src="earth.png" alt="earth" />
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="break">
-      <h3> {{ places }} </h3>
-    </div>
-
-    <div class="page-middle container">
-      <div class=""></div>
-      <div class="row">
-        <div class="col s12 m6 l3">
-         <div class="pic-box"></div> 
-        </div>
-        <div class="col s12 m6 l3">
-        <div class="pic-box"></div>
-        </div>
-        <div class="col s12 m6 l3">
-        <div class="pic-box"></div>
-        </div>
-        <div class="col s12 m6 l3">
-        <div class="pic-box"></div>
-        </div>
-      </div>
+    <div class="center-align page-break">
+      <h4>{{ places }}</h4>
     </div>
   </div>
 </template>
@@ -49,43 +40,46 @@ export default {
   data() {
     return {
       places: "Places All Over The World!"
-    }
+    };
   }
 };
 </script>
 
 
 <style scoped>
-.page-top {
-  width: 100%;
-  min-height: 92vh;
-  height: auto;
-  
-}
-.left-welcome, .right-welcome {
- border: solid 1px #fff;
- height: 400px;
- margin: 20vh 0;
-}
-
-.pic-box {
-  border: solid 1px #fff;
-  height: 200px;
-  margin: 50px 0;
-}
-.page-middle {
-  width: 100%;
-  height: auto;
-}
-.break {
-  height: 100px;
-  line-height: 100px;
+.page-break {
   background: rgba(51, 51, 51, 0.438);
 }
-.break h3 {
-  margin:0;
+.page-break h4 {
+  margin: 0;
+  line-height: 100px;
 }
-.img img {
- width:400px;
+
+.right-welcome img {
+  width: 100%;
+}
+</style>
+
+<style>
+.page-top {
+  min-height: 92vh;
+}
+.left-welcome,
+.right-welcome {
+  height: 400px;
+  margin: 20vh 0;
+}
+
+@media (max-width: 600px) {
+  .left-welcome,
+  .right-welcome {
+    margin: 5vh 0;
+  }
+  .left-welcome h3 {
+    font-size: 30px;
+  }
+  .page-break h4 {
+    font-size: 20px;
+  }
 }
 </style>

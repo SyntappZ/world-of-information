@@ -1,39 +1,39 @@
 <template>
   <div id="app">
-    <div id="background"></div>
+    
 
     <div id="nav">
-      <div class="container">
+      <div class="nav container">
         <div class="title-box left">
           <p class="small-title">
-            <span class="title">world</span> of information
+            <span class="glow title">world</span> of information
           </p>
         </div>
         <div class="right">
           <div class="link-box">
-            <router-link to="/">Home</router-link>
+            <router-link class="link" to="/">Home</router-link>
           </div>
 
           <div class="link-box">
-            <router-link to="/MainPage">Maps</router-link>
+            <router-link class="link" to="/MainPage">Maps</router-link>
           </div>
 
           <div class="link-box">
-            <router-link to="/Contact">Contact</router-link>
+            <router-link class="link" to="/Contact">Contact</router-link>
           </div>
         </div>
       </div>
     </div>
     <router-view />
-    <Footer />
+    <pageFooter />
   </div>
 </template>
 
 <script>
-import Footer from './components/Footer'
+import pageFooter from './components/pageFooter'
 export default {
   components: {
-    Footer
+    pageFooter
   }
 }
 </script>
@@ -44,14 +44,45 @@ export default {
   font-family: "Raleway", arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #fff;
   background: linear-gradient(90deg, rgb(136, 2, 219), #00c0c2);
 }
 #nav {
-  border-bottom: 1px solid rgba(207, 207, 207, 0.445);
+  border-bottom: 1px solid rgba(207, 207, 207, 0.356);
   min-height: 8vh;
-  height:auto;
+  
+}
+.arial {
+  font-family: arial, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 30px;
+  font-size: 17px;
+}
+h1,h2,h3,h4,h5,h6 {
+  margin: 5px 0;
+  padding: 0;
+}
+.btns {
+  padding:12px 17px;
+  border:none;
+  border-radius: 5px 10px;
+  cursor: pointer;
+  color: rgb(136, 2, 219);
+  font-weight: 600;
+  background-color: rgb(255, 255, 255);
+  margin:10px 0;
+}
+
+.btns:hover {
+  background-color: rgb(224, 224, 224);
+}
+.btns:focus{
+  background-color: rgb(255, 255, 255);
+}
+
+.link {
+ padding: 15px 0;
 }
 
 #nav a {
@@ -106,14 +137,11 @@ export default {
 .row {
   margin: 0;
 }
-.text-left {
-  text-align: left;
-}
-.text-right {
-  text-align: right;
-}
+
 
 @media (max-width: 600px) {
-  
+  #app {
+    text-align: center;
+  }
 }
 </style>
