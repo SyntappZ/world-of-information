@@ -85,7 +85,7 @@ export default {};
 .london {
   width: 50%;
   left: 500px;
-  bottom: 120px;
+  bottom: 40px;
 }
 .newYork {
   width: 30%;
@@ -106,9 +106,9 @@ export default {};
 .louvre {
   width: 60%;
   left: 40px;
-  top: 490px;
+  bottom: 0;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .pics {
         width:100%;
         position: static;
