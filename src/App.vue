@@ -15,7 +15,7 @@
           </div>
 
           <div class="link-box">
-            <router-link class="link" to="/MainPage">Maps</router-link>
+            <router-link class="link" to="/MainPage">Search</router-link>
           </div>
 
           <div class="link-box">

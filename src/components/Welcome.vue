@@ -14,7 +14,7 @@
                 You can use the map to search or use the search bar for
                 specific locations.
               </p>
-              <button class="btns waves-effect waves-light">go to maps</button>
+              <button class="btns waves-effect waves-light">Search</button>
             </div>
           </div>
         </div>

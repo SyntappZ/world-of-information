@@ -33,7 +33,7 @@ export default {
   methods: {
     getImage() {
       if(this.search.length > 2) {
-        let url = "https://api.unsplash.com/search/photos?page=1&per_page=5&query="
+        let url = "https://api.unsplash.com/search/photos?page=1&per_page=1&query="
       let key = "&client_id=08c04aa141478d0a384fd4d24002641b73430c41565f3af92e5d64b96c0f20f3"
      axios
       .get(url + this.search + key)
