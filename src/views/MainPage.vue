@@ -8,7 +8,10 @@
 
           <button @click="getInput" class="btns">Search</button>
         </div>
+
         <div class="col s12">
+          <h2 class="mb4 center-align">{{ title }}</h2>
+          <blockquote>Click image to show more Information</blockquote>
           <search />
         </div>
       </div>
@@ -28,47 +31,54 @@ export default {
   data() {
     return {
       searching: "",
+      title: "",
       nameArray: [],
       fullArray: [],
       imageArray: []
     };
-    //  store.commit("getImg", image.urls.regular);
-    //           store.commit("getDesc", image.alt_description);
+   
   },
   methods: {
     getInput() {
       this.nameArray = [];
       this.imageArray = [];
-      store.commit("getSearch", this.searching);
+      this.fullArray = [];
+      this.merged = [];
+      this.getTitle();
+      
       this.getWiki();
-      this.getImage();
+      
+    },
+    getTitle() {
+      this.title = this.searching[0].toUpperCase() + this.searching.slice(1);
     },
     getImage() {
       let url =
         "https://api.unsplash.com/search/photos?page=1&per_page=1&query=";
       let key =
         "&client_id=08c04aa141478d0a384fd4d24002641b73430c41565f3af92e5d64b96c0f20f3";
-console.log(this.nameArray)
+
       for (let i = 0; i < 10; i++) {
-        
         axios
           .get(url + this.nameArray[i] + key)
           .then(response => {
-            response.data.results.forEach(image => {
-             this.imageArray.push({
-               url: image.urls.regular,
-               desc: image.alt_description
-             })
+            let picUrl = response.data.results[0].urls.small;
+            let picDesc = response.data.results[0].alt_description;
+            this.imageArray.push({
+              url: picUrl,
+              desc: picDesc
             });
+            this.merged.push({ ...this.fullArray[i], ...this.imageArray[i] });
           })
           .catch(function(error) {
             console.log(error);
           });
-        this.searching = "";
-       
       }
-       //console.log(this.imageArray)
+      
+      store.commit("getArray", this.merged);
+      this.searching = ''
     },
+
     getWiki() {
       let url = "http://en.wikipedia.org/w/api.php?action=opensearch&search=";
       axios
@@ -80,9 +90,11 @@ console.log(this.nameArray)
             this.fullArray.push({
               name: response.data[1][i],
               info: response.data[2][i],
-              link: response.data[3][i]
+              link: response.data[3][i],
+              default: 'no-image.png'
             });
           }
+          this.getImage();
         })
         .catch(function(error) {
           console.log(error);

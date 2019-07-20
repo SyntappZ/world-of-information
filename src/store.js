@@ -1,32 +1,20 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import { stat } from 'fs';
+import Vue from "vue";
+import Vuex from "vuex";
+import { stat } from "fs";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    search: '',
-    img: '',
-    desc: ''
+    wikiArray: []
   },
   mutations: {
-    getSearch(state, info) {
-      state.search = info
-    },
-    getImg(state, img) {
-      state.img = img
-    },
-    getDesc(state, desc) {
-      state.desc = desc
+    getArray(state, arr) {
+     state.wikiArray = arr
     }
   },
-  actions: {
-
-  },
+  actions: {},
   getters: {
-    search: state => state.search,
-    img: state => state.img,
-    desc: state => state.desc
+    wikiArray: state => state.wikiArray
   }
-})
+});

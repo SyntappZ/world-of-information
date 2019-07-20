@@ -43,6 +43,7 @@ export default {
 <style scoped>
 .contact {
   min-height: 92vh;
+   /* background-color: rgba(0, 0, 0, 0.247); */
 }
 
 .page-middle {
