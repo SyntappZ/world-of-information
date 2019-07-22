@@ -2,12 +2,12 @@
   <div class="main">
     <div class="container">
       <div class="row">
-        <div class="input-field col s12">
+        <form @submit.prevent="getInput" class="input-field col s12">
           <input v-model="searching" id="search" type="text" />
           <label autocomplete="off" for="search">Search Information</label>
 
-          <button @click="getInput" class="btns">Search</button>
-        </div>
+          <button class="btns">Search</button>
+        </form>
 
         <div class="col s12">
           <h2 class="mb4 center-align">{{ title }}</h2>
@@ -32,51 +32,74 @@ export default {
     return {
       searching: "",
       title: "",
+      backup: [],
       nameArray: [],
       fullArray: [],
-      imageArray: []
+      imagesArray: [],
+      croped: [],
+      images: [],
+      pics: [],
+      picObject: []
     };
-   
   },
   methods: {
     getInput() {
       this.nameArray = [];
-      this.imageArray = [];
+
       this.fullArray = [];
       this.merged = [];
+      this.pics = [];
       this.getTitle();
-      
+
       this.getWiki();
-      
     },
     getTitle() {
       this.title = this.searching[0].toUpperCase() + this.searching.slice(1);
     },
     getImage() {
-      let url =
-        "https://api.unsplash.com/search/photos?page=1&per_page=1&query=";
-      let key =
-        "&client_id=08c04aa141478d0a384fd4d24002641b73430c41565f3af92e5d64b96c0f20f3";
-
       for (let i = 0; i < 10; i++) {
-        axios
-          .get(url + this.nameArray[i] + key)
+        axios({
+          method: "get",
+          url:
+            "https://api.imgur.com/3/gallery/search/top?q=" + this.nameArray[i],
+
+          headers: {
+            Authorization: "Client-ID 51bba8fc11cf83f"
+          }
+        })
           .then(response => {
-            let picUrl = response.data.results[0].urls.small;
-            let picDesc = response.data.results[0].alt_description;
-            this.imageArray.push({
-              url: picUrl,
-              desc: picDesc
+            this.imagesArray = [];
+            this.images = [];
+
+            let images = response.data.data;
+
+            images.forEach(x => {
+              this.imagesArray.push({
+                title: x.title,
+                url: x.link
+              });
             });
-            this.merged.push({ ...this.fullArray[i], ...this.imageArray[i] });
+
+            this.imagesArray.forEach(x => {
+              let reg = new RegExp(/.png$|.jpg$|.gif$/);
+
+              let linkCheck = reg.test(x.url);
+
+              if (linkCheck) {
+                this.images.push(x);
+              }
+            });
+
+            let pic = this.images[0];
+
+            this.merged.push({ ...this.fullArray[i], ...pic });
           })
           .catch(function(error) {
             console.log(error);
           });
       }
-      
       store.commit("getArray", this.merged);
-      this.searching = ''
+      this.searching = "";
     },
 
     getWiki() {
@@ -84,24 +107,95 @@ export default {
       axios
         .get(url + this.searching + "&origin=*")
         .then(response => {
-          response.data[1].forEach(x => this.nameArray.push(x));
+          response.data[1].forEach(x => {
+            let rem = x.replace(/[:,/-]/g, " ");
 
+            this.nameArray.push(rem);
+            let crop2 = rem
+              .replace(/[()]/g, "")
+              .split(" ")
+              .slice(0, 2)
+              .join(" ");
+            let crop3 = rem
+              .replace(/[()]/g, "")
+              .split(" ")
+              .slice(0, 3)
+              .join(" ");
+            let reg = new RegExp(/in$|and$|or$|of$|the$/);
+
+            let wordCheck = reg.test(crop2);
+            if (wordCheck) {
+              this.croped.push(crop3);
+            } else {
+              this.croped.push(crop2);
+            }
+          });
+          console.log(...this.backup)
+        
           for (let i = 0; i < 10; i++) {
-            this.fullArray.push({
+             
+        
+       
+           this.fullArray.push({
               name: response.data[1][i],
               info: response.data[2][i],
               link: response.data[3][i],
-              default: 'no-image.png'
+              backup: "",
+              default: ""
             });
+      
+           
           }
+         
+         //console.log(this.picObject)
+         this.backupImages();
           this.getImage();
+         
         })
         .catch(function(error) {
           console.log(error);
         });
+    },
+    backupImages() {
+     // this.backup = [];
+     
+  for(let i = 0; i < 10; i++) {
+     axios({
+        method: "get",
+        url: "https://api.imgur.com/3/gallery/search/top?q=" + this.croped[i],
+
+        headers: {
+          Authorization: "Client-ID 51bba8fc11cf83f"
+        }
+      })
+        .then(response => {
+          let images = response.data.data;
+
+          images = images.filter(x => {
+            let reg = new RegExp(/.png$|.jpg$|.gif$/);
+            return reg.test(x.link);
+          });
+          // console.log(images.length)
+          // console.log(images === [])
+
+          if (images.length == 0) {
+            
+            this.backup.push("no-image.png");
+          } else {
+            this.backup.push(images[0].link);
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+        
+  }
+     
     }
   },
-  computed: {}
+  computed: {
+    
+  }
 };
 </script>
 
