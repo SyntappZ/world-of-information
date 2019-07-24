@@ -32,26 +32,22 @@ export default {
     return {
       searching: "",
       title: "",
+      getUrls: [],
       backup: [],
       nameArray: [],
       fullArray: [],
       imagesArray: [],
-      croped: [],
-      images: [],
-      pics: [],
-      picObject: []
+      merged: []
     };
   },
   methods: {
     getInput() {
       this.nameArray = [];
-
       this.fullArray = [];
       this.merged = [];
-      this.pics = [];
-      this.getTitle();
 
-      this.getWiki();
+      this.getTitle();
+      this.backupImages();
     },
     getTitle() {
       this.title = this.searching[0].toUpperCase() + this.searching.slice(1);
@@ -73,24 +69,26 @@ export default {
 
             let images = response.data.data;
 
-            images.forEach(x => {
+            let removeVids = images.filter(x => x.type != "video/mp4");
+            removeVids.forEach(x => {
+              let url = "";
+              let reg = new RegExp(/.png$|.jpg$|.gif$/);
+
+              let linkCheck = reg.test(x.link);
+              if (linkCheck) {
+                url = x.link;
+              } else {
+                url = "error";
+              }
+
               this.imagesArray.push({
                 title: x.title,
-                url: x.link
+                url: url
               });
             });
 
-            this.imagesArray.forEach(x => {
-              let reg = new RegExp(/.png$|.jpg$|.gif$/);
-
-              let linkCheck = reg.test(x.url);
-
-              if (linkCheck) {
-                this.images.push(x);
-              }
-            });
-
-            let pic = this.images[0];
+            let removeError = this.imagesArray.filter(x => x.url !== "error");
+            let pic = removeError[0];
 
             this.merged.push({ ...this.fullArray[i], ...pic });
           })
@@ -100,6 +98,43 @@ export default {
       }
       store.commit("getArray", this.merged);
       this.searching = "";
+    },
+    backupImages() {
+      this.backup = [];
+      this.getUrls = [];
+      axios({
+        method: "get",
+        url: "https://api.imgur.com/3/gallery/search/top?q=" + this.searching,
+        headers: {
+          Authorization: "Client-ID 51bba8fc11cf83f"
+        }
+      })
+        .then(response => {
+          let images = response.data.data;
+          let removeVids = images.filter(x => x.type != "video/mp4");
+          removeVids.forEach(x => {
+            let url = "";
+            let reg = new RegExp(/.png$|.jpg$|.gif$/);
+            let linkCheck = reg.test(x.link);
+            if (linkCheck) {
+              url = x.link;
+            } else {
+              url = x.images[0].link;
+            }
+            this.getUrls.push(url);
+          });
+          for (let i = 0; i < 10; i++) {
+            let rand = this.getUrls[
+              Math.floor(Math.random() * this.getUrls.length)
+            ];
+
+            this.backup.push(rand);
+          }
+          this.getWiki();
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
 
     getWiki() {
@@ -111,91 +146,25 @@ export default {
             let rem = x.replace(/[:,/-]/g, " ");
 
             this.nameArray.push(rem);
-            let crop2 = rem
-              .replace(/[()]/g, "")
-              .split(" ")
-              .slice(0, 2)
-              .join(" ");
-            let crop3 = rem
-              .replace(/[()]/g, "")
-              .split(" ")
-              .slice(0, 3)
-              .join(" ");
-            let reg = new RegExp(/in$|and$|or$|of$|the$/);
-
-            let wordCheck = reg.test(crop2);
-            if (wordCheck) {
-              this.croped.push(crop3);
-            } else {
-              this.croped.push(crop2);
-            }
           });
-          console.log(...this.backup)
-        
+
           for (let i = 0; i < 10; i++) {
-             
-        
-       
-           this.fullArray.push({
+            this.fullArray.push({
               name: response.data[1][i],
               info: response.data[2][i],
               link: response.data[3][i],
-              backup: "",
-              default: ""
+              backup: this.backup[i]
             });
-      
-           
           }
-         
-         //console.log(this.picObject)
-         this.backupImages();
+
           this.getImage();
-         
         })
         .catch(function(error) {
           console.log(error);
         });
-    },
-    backupImages() {
-     // this.backup = [];
-     
-  for(let i = 0; i < 10; i++) {
-     axios({
-        method: "get",
-        url: "https://api.imgur.com/3/gallery/search/top?q=" + this.croped[i],
-
-        headers: {
-          Authorization: "Client-ID 51bba8fc11cf83f"
-        }
-      })
-        .then(response => {
-          let images = response.data.data;
-
-          images = images.filter(x => {
-            let reg = new RegExp(/.png$|.jpg$|.gif$/);
-            return reg.test(x.link);
-          });
-          // console.log(images.length)
-          // console.log(images === [])
-
-          if (images.length == 0) {
-            
-            this.backup.push("no-image.png");
-          } else {
-            this.backup.push(images[0].link);
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-        
-  }
-     
     }
   },
-  computed: {
-    
-  }
+  computed: {}
 };
 </script>
 

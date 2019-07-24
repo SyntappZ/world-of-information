@@ -6,7 +6,7 @@
        
         <div class="card hoverable center-align">
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator img" :src="wiki.url || wiki.backup || wiki.default" :title="wiki.desc"/>
+            <img class="activator img" :src="wiki.url || wiki.backup" :title="wiki.desc"/>
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
