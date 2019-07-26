@@ -4,12 +4,13 @@
 
     <div id="nav">
       <div class="nav container">
-        <div class="title-box left">
+        <div class="row">
+           <div class="title-box left col" s12 m6 l6>
           <p class="small-title">
             <span class="glow title">world</span> of information
           </p>
         </div>
-        <div class="right">
+        <div class="right col" s12 m6 l6>
           <div class="link-box">
             <router-link class="link" to="/">Home</router-link>
           </div>
@@ -22,6 +23,8 @@
             <router-link class="link" to="/Contact">Contact</router-link>
           </div>
         </div>
+        </div>
+       
       </div>
     </div>
     <router-view />

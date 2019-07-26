@@ -172,6 +172,7 @@ export default {
 .main {
   min-height: 92vh;
   padding-top: 20px;
+ 
 }
 #search {
   color: white;

@@ -29,8 +29,10 @@
           <div class="right-box">
               <h3>Where will you explore?</h3>
 
-              <p class="arial">Use map search and explore if you can decide.</p>
-              <button class="btns purple white-text darken-4 waves-effect waves-light">explore</button>
+              <p class="arial">get information on any <br>country or city</p>
+              <button class="btns purple darken-4 waves-effect waves-light">
+                <router-link class="link white-text" to="/MainPage">Explore</router-link>
+              </button>
           </div>
         </div>
       </div>
@@ -108,7 +110,8 @@ export default {};
   left: 40px;
   bottom: 0;
 }
-@media (max-width: 800px) {
+
+@media (max-width: 1024px) {
     .pics {
         width:100%;
         position: static;

@@ -1,8 +1,5 @@
 <template>
   <div class="contact">
-    
-      
-
       <div v-show="show" class="page-middle container">
         <div class="row">
           <div class="col s12 m6 l3">
@@ -43,7 +40,7 @@ export default {
 <style scoped>
 .contact {
   min-height: 92vh;
-   /* background-color: rgba(0, 0, 0, 0.247); */
+   background-color: white;
 }
 
 .page-middle {

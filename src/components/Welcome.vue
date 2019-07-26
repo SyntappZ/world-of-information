@@ -9,12 +9,13 @@
               <h3 class="glow">World Of Information</h3>
 
               <p class="arial">
-                WOI is a site to out places on
-                earth and get information about that area.
-                You can use the map to search or use the search bar for
-                specific locations.
+                WOI is a site to you can search for anything
+                and it brings back 10 results, for best results search
+                one word.
               </p>
-              <button class="btns waves-effect waves-light">Search</button>
+              <button class="btns waves-effect waves-light">
+                 <router-link class="link" to="/MainPage">Search</router-link>
+              </button>
             </div>
           </div>
         </div>
@@ -27,8 +28,8 @@
       </div>
     </div>
 
-    <div class="center-align page-break">
-      <h4>{{ places }}</h4>
+    <div class=" center-align page-break">
+      <h4 class="place">{{ places }}</h4>
     </div>
   </div>
 </template>
@@ -39,7 +40,7 @@ export default {
 
   data() {
     return {
-      places: "Places All Over The World!"
+      places: "Why Not Search Places Around World!"
     };
   }
 };
@@ -57,6 +58,9 @@ export default {
 
 .right-welcome img {
   width: 100%;
+}
+.link{
+  color: purple;
 }
 </style>
 
@@ -79,7 +83,8 @@ export default {
     font-size: 30px;
   }
   .page-break h4 {
-    font-size: 20px;
+    font-size: 14px;
   }
+  
 }
 </style>
