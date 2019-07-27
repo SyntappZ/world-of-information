@@ -1,7 +1,24 @@
 <template>
   <div class="main">
-    <div class="container">
+    <div class="container top">
       <div class="row">
+        <div class="col s12 m12">
+          <div class="img-wrap">
+            <img src="earth.png" />
+          </div>
+          <h3 class="glow">Search</h3>
+          <h6>
+            For best results search for one or two words.
+            <br />Examples: bob, france, superman...
+          </h6>
+        </div>
+      </div>
+    </div>
+    <div class="container search">
+      <div class="row">
+        <div class="grey-top">
+          <h5 class="mb4 center-align">{{ title }}</h5>
+        </div>
         <form @submit.prevent="getInput" class="input-field col s12">
           <input v-model="searching" id="search" type="text" />
           <label autocomplete="off" for="search">Search Information</label>
@@ -10,7 +27,7 @@
         </form>
 
         <div class="col s12">
-          <h2 class="mb4 center-align">{{ title }}</h2>
+          
           <blockquote>Click image to show more Information</blockquote>
           <search />
         </div>
@@ -172,19 +189,67 @@ export default {
 .main {
   min-height: 92vh;
   padding-top: 20px;
- 
+  
+}
+.top {
+  padding: 100px 0;
+}
+.grey-top {
+  background: rgb(241, 241, 241);
+  width: 100%;
+  height: 60px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+   
+}
+.img-wrap {
+  width: 100px;
+  margin:auto;
+}
+.img-wrap img {
+  width: 100%;
+}
+.search {
+  background: rgba(255, 255, 255, 0.774);
+  
+}
+blockquote {
+  color: #333;
+  text-align:left;
 }
 #search {
-  color: white;
+  color: #333;
+}
+.col {
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+h3 {
+  padding: 30px 0;
+}
+h6 {
+  color: rgb(194, 194, 194);
+}
+h5 {
+  color: #999;
+  font-weight: 400;
+   margin:0;
+   padding:0;
+}
+h2 {
+  color: #333;
+  
 }
 .input-field {
   margin-top: 10px;
 }
 .input-field input[type="text"]:focus + label {
-  color: #fff;
+  color: rgb(165, 165, 165);
 }
 #search:focus {
-  border-bottom: solid white 1px;
-  box-shadow: 0 1px 0 0 #fff;
+  border-bottom: solid rgb(165, 165, 165) 1px;
+  box-shadow: 0 1px 0 0 rgb(165, 165, 165);
 }
 </style>
