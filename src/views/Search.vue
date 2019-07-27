@@ -27,9 +27,8 @@
         </form>
 
         <div class="col s12">
-          
           <blockquote>Click image to show more Information</blockquote>
-          <search />
+          <searchResults />
         </div>
       </div>
     </div>
@@ -37,12 +36,12 @@
 </template>
 
 <script>
-import search from "../components/Search";
+import searchResults from "../components/SearchResults";
 import store from "../store";
 import axios from "axios";
 export default {
   components: {
-    search
+    searchResults
   },
   mounted() {},
   data() {
@@ -166,11 +165,21 @@ export default {
           });
 
           for (let i = 0; i < 10; i++) {
+            let name = "";
+            let cut = response.data[1][i].split(" ");
+            cut.length = 3;
+            cut = cut.join(" ") + "...";
+            if (response.data[1][i].split(" ").length < 4) {
+              name = response.data[1][i];
+            } else {
+              name = cut;
+            }
             this.fullArray.push({
-              name: response.data[1][i],
+              name: name,
               info: response.data[2][i],
               link: response.data[3][i],
-              backup: this.backup[i]
+              backup: this.backup[i],
+              fullName: response.data[1][i]
             });
           }
 
@@ -189,37 +198,47 @@ export default {
 .main {
   min-height: 92vh;
   padding-top: 20px;
-  
 }
 .top {
   padding: 100px 0;
 }
+
 .grey-top {
-  background: rgb(241, 241, 241);
+  background: rgb(255, 255, 255);
   width: 100%;
   height: 60px;
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-   
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+ 
+
+.btns:hover {
+   background-color: rgb(224, 224, 224);
+  
+
 }
 .img-wrap {
   width: 100px;
-  margin:auto;
+  margin: auto;
 }
 .img-wrap img {
   width: 100%;
 }
 .search {
-  background: rgba(255, 255, 255, 0.774);
-  
+  background: rgba(48, 48, 48, 0.247);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 blockquote {
-  color: #333;
-  text-align:left;
+  color: #fff;
+  text-align: left;
 }
 #search {
-  color: #333;
+  color: #fff;
 }
 .col {
   text-align: center;
@@ -235,21 +254,37 @@ h6 {
 h5 {
   color: #999;
   font-weight: 400;
-   margin:0;
-   padding:0;
+  margin: 0;
+  padding: 0;
 }
 h2 {
   color: #333;
-  
 }
 .input-field {
-  margin-top: 10px;
+  margin-top: 30px;
+  
 }
 .input-field input[type="text"]:focus + label {
-  color: rgb(165, 165, 165);
+  color: #fff;
+
 }
 #search:focus {
-  border-bottom: solid rgb(165, 165, 165) 1px;
-  box-shadow: 0 1px 0 0 rgb(165, 165, 165);
+  border-bottom: solid #fff 1px;
+  box-shadow: 0 1px 0 0 #fff;
+   
+}
+@media (max-width: 600px) {
+  blockquote {
+  font-size:11px;
+}
+.top {
+  padding: 50px 0;
+}
+br {
+  display:none;
+}
+h6 {
+  line-height: 20px;
+}
 }
 </style>

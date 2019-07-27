@@ -16,7 +16,7 @@
           </div>
 
           <div class="link-box">
-            <router-link class="link" to="/MainPage">Search</router-link>
+            <router-link class="link" to="/Search">Search</router-link>
           </div>
 
           <div class="link-box">
@@ -50,6 +50,7 @@ export default {
   text-align: left;
   color: #fff;
   background: linear-gradient(90deg, rgb(136, 2, 219), #00c0c2);
+ 
 }
 #nav {
   border-bottom: 1px solid rgba(207, 207, 207, 0.356);
@@ -66,16 +67,7 @@ h1,h2,h3,h4,h5,h6 {
   margin: 5px 0;
   padding: 0;
 }
-.btns {
-  padding:12px 17px;
-  border:none;
-  border-radius: 5px 10px;
-  cursor: pointer;
-  color: rgb(136, 2, 219);
-  font-weight: 600;
-  background-color: rgb(255, 255, 255);
-  margin:10px 0;
-}
+
 
 .btns:hover {
   background-color: rgb(224, 224, 224);
@@ -85,13 +77,27 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .link {
- padding: 15px 0;
+ 
+  font-weight: 450;
+  letter-spacing: 2px;
 }
 
 #nav a {
   font-weight: bold;
   color: #fff;
   text-align: right;
+}
+.btns {
+  padding:12px 17px;
+  border:none;
+  border-radius: 5px 10px;
+  cursor: pointer;
+  color: rgb(54, 117, 235);
+  font-weight: 450;
+  background-color: rgb(255, 255, 255);
+  margin:10px 0;
+  transition: .1s ease-in-out;
+  letter-spacing: 2px;
 }
 
 #nav a.router-link-exact-active {

@@ -14,10 +14,10 @@ export default new Router({
       component: Home
     },
     {
-      path: '/MainPage',
-      name: 'main-page',
+      path: '/Search',
+      name: 'search',
      
-      component: () => import('./views/MainPage.vue')
+      component: () => import('./views/Search.vue')
     },
     {
       path: '/Contact',

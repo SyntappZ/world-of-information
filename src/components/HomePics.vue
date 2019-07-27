@@ -2,7 +2,7 @@
   <div class="home-pics">
     <div class="wrap">
       <div class="row">
-        <div class="marg col s12 m6">
+        <div class="marg col s12 m12 l6">
           <div class="left-box">
             <div class="pics capeTown">
               <img src="capeTown.jpg" alt="capeTown" />
@@ -25,14 +25,17 @@
             </div>
           </div>
         </div>
-        <div class="marg col s12 m6">
+        <div class="right-wrap col s12 m12 l6">
           <div class="right-box">
-              <h3>Where will you explore?</h3>
+            <h3>Where will you explore?</h3>
 
-              <p class="arial">get information on any <br>country or city</p>
-              <button class="btns purple darken-4 waves-effect waves-light">
-                <router-link class="link white-text" to="/MainPage">Explore</router-link>
-              </button>
+            <p class="pic-text">
+              get information on any country or city
+              <br />around the world.
+            </p>
+            <button class="btns">
+              <router-link class="link white-text" to="/Search">Explore</router-link>
+            </button>
           </div>
         </div>
       </div>
@@ -52,75 +55,68 @@ export default {};
 }
 .wrap {
   width: 100%;
-  min-height: 100vh;
 }
+.pic-text {
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: rgb(160, 160, 160);
+}
+
 .left-box,
+.right-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.right-wrap {
+  justify-content: center;
+  align-items: center;
+  padding-top: 200px;
+}
 .right-box {
-  min-height: 100vh;
+  width: 500px;
+  height: 200px;
+
+  text-align: center;
 }
-.left-box {
-  left: 0;
-  position: relative;
+
+.btns {
+  background-color: rgb(54, 117, 235);
+  color: white;
 }
-.right-box {
-    text-align: center;
-    padding:40vh 0;
-    
+.btns:hover {
+  background-color: rgb(87, 140, 238);
 }
+
 .marg {
   margin: 0;
   padding: 0;
 }
 .pics {
-  position: absolute;
-  opacity: 0.7;
+  width: 50%;
+  height: 200px;
 }
-.pics img {
+img {
+  object-fit: cover;
   width: 100%;
-  margin: 0;
-}
-.capeTown {
-  width: 50%;
-  left: 0;
-  top: 0;
-}
-.london {
-  width: 50%;
-  left: 500px;
-  bottom: 40px;
-}
-.newYork {
-  width: 30%;
-  left: 550px;
-  top: 90px;
-}
-.scotland {
-  width: 80%;
-  left: 100px;
-  top: 180px;
-  opacity: 1;
-}
-.sydney {
-  width: 40%;
-  left: 5px;
-  top: 240px;
-}
-.louvre {
-  width: 60%;
-  left: 40px;
-  bottom: 0;
+  height: 200px;
 }
 
 @media (max-width: 1024px) {
-    .pics {
-        width:100%;
-        position: static;
-        opacity: 1;
-    }
-    .left-box,
-.right-box {
-  min-height: 0;
+  .right-wrap {
+    height: 400px;
+    padding: 0;
+  }
 }
+
+@media (max-width: 600px) {
+  .pics {
+    width: 100%;
+    height: 300px;
+  }
+  img {
+    height: 300px;
+  }
 }
 </style>
     

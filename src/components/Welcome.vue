@@ -8,13 +8,13 @@
               <h3 class="glow">Welcome To</h3>
               <h3 class="glow">World Of Information</h3>
 
-              <p class="arial">
+              <p class="welcome-text">
                 WOI is a site to you can search for anything
                 and it brings back 10 results, for best results search
                 one word.
               </p>
               <button class="btns waves-effect waves-light">
-                 <router-link class="link" to="/MainPage">Search</router-link>
+                 <router-link class="link" to="/Search">Search</router-link>
               </button>
             </div>
           </div>
@@ -55,16 +55,20 @@ export default {
   margin: 0;
   line-height: 100px;
 }
+.welcome-text {
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: rgb(211, 211, 211);
+}
 
 .right-welcome img {
   width: 100%;
 }
 .link{
-  color: purple;
+  color: rgb(54, 117, 235);
 }
-</style>
 
-<style>
+
 .page-top {
   min-height: 92vh;
 }
@@ -74,11 +78,23 @@ export default {
   margin: 20vh 0;
 }
 
+@media (max-width: 1024px) {
+  .page-top {
+  min-height: 0;
+}
+ .left-welcome,
+  .right-welcome {
+    margin: 15vh 0;
+    height:auto;
+  }
+}
 @media (max-width: 600px) {
   .left-welcome,
   .right-welcome {
     margin: 5vh 0;
+    height:auto;
   }
+  
   .left-welcome h3 {
     font-size: 30px;
   }
