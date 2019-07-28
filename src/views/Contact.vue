@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col form s12 m6 l6">
           <div class="row">
-            <form class="col s12">
+            <form class="col s12"  method="POST"  netlify-honeypot="bot-field" data-netlify="true">
              
               <div class="row">
                 <div class="input-field col s12">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class=" col s12 m6 l6">
-          <h5>projects</h5>
+          <h5>Other Projects</h5>
           <div class="projects">
             <div class="row project">
             <h6>The Vault: <a class="link" target="_blank" href="http://the-vault.ml">http://the-vault.ml</a></h6>
@@ -114,6 +114,11 @@ export default {
 .input-field input[type="text"]:focus + label,
 .input-field input[type="email"]:focus + label,
 .input-field textarea:focus + label {
+  color: #fff;
+}
+.input-field input[type="text"],
+.input-field input[type="email"],
+.input-field textarea {
   color: #fff;
 }
 /* label underline focus color */
