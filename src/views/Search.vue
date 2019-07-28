@@ -18,6 +18,7 @@
       <div class="row">
         <div class="grey-top">
           <h5 class="mb4 center-align">{{ title }}</h5>
+          
         </div>
         <form @submit.prevent="getInput" class="input-field col s12">
           <input v-model="searching" id="search" type="text" />
@@ -53,7 +54,8 @@ export default {
       nameArray: [],
       fullArray: [],
       imagesArray: [],
-      merged: []
+      merged: [],
+      loop: 20
     };
   },
   methods: {
@@ -69,7 +71,7 @@ export default {
       this.title = this.searching[0].toUpperCase() + this.searching.slice(1);
     },
     getImage() {
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < this.loop; i++) {
         axios({
           method: "get",
           url:
@@ -82,7 +84,7 @@ export default {
           .then(response => {
             this.imagesArray = [];
             this.images = [];
-
+           // console.log(response)
             let images = response.data.data;
 
             let removeVids = images.filter(x => x.type != "video/mp4");
@@ -121,12 +123,14 @@ export default {
       axios({
         method: "get",
         url: "https://api.imgur.com/3/gallery/search/top?q=" + this.searching,
+        
         headers: {
           Authorization: "Client-ID 51bba8fc11cf83f"
         }
       })
         .then(response => {
           let images = response.data.data;
+       console.log(response)
           let removeVids = images.filter(x => x.type != "video/mp4");
           removeVids.forEach(x => {
             let url = "";
@@ -137,14 +141,17 @@ export default {
             } else {
               url = x.images[0].link;
             }
+            
             this.getUrls.push(url);
+            
           });
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < this.loop; i++) {
             let rand = this.getUrls[
               Math.floor(Math.random() * this.getUrls.length)
             ];
 
             this.backup.push(rand);
+            
           }
           this.getWiki();
         })
@@ -154,17 +161,19 @@ export default {
     },
 
     getWiki() {
-      let url = "http://en.wikipedia.org/w/api.php?action=opensearch&search=";
+      let url = "http://en.wikipedia.org/w/api.php?action=opensearch&limit=20&search=";
       axios
         .get(url + this.searching + "&origin=*")
         .then(response => {
+         
           response.data[1].forEach(x => {
             let rem = x.replace(/[:,/-]/g, " ");
-
+              
             this.nameArray.push(rem);
           });
 
-          for (let i = 0; i < 10; i++) {
+          for (let i = 0; i < this.loop; i++) {
+            
             let name = "";
             let cut = response.data[1][i].split(" ");
             cut.length = 3;
@@ -182,7 +191,7 @@ export default {
               fullName: response.data[1][i]
             });
           }
-
+           
           this.getImage();
         })
         .catch(function(error) {
@@ -277,6 +286,10 @@ h2 {
   blockquote {
   font-size:11px;
 }
+.search {
+  background: rgba(48, 48, 48, 0.247);
+  width:100%;
+}
 .top {
   padding: 50px 0;
 }
@@ -285,6 +298,10 @@ br {
 }
 h6 {
   line-height: 20px;
+}
+.grey-top {
+  
+ border-radius:0;
 }
 }
 </style>

@@ -3,25 +3,11 @@
     <div class="wrap">
       <div class="row">
         <div class="marg col s12 m12 l6">
-          <div class="left-box">
-            <div class="pics capeTown">
-              <img src="capeTown.jpg" alt="capeTown" />
-            </div>
-            <div class="pics london">
-              <img src="london.jpg" alt="london" />
-            </div>
-            <div class="pics newYork">
-              <img src="newYork.jpg" alt="newYork" />
-            </div>
-
-            <div class="pics sydney">
-              <img src="sydney.jpg" alt="sydney" />
-            </div>
-            <div class="pics louvre">
-              <img src="louvre.jpg" alt="louvre" />
-            </div>
-            <div class="pics scotland">
-              <img src="scotland.jpg" alt="scotland" />
+          <div class="left-box" >
+            <div class="pics"  v-for="img in images" :key="img.name">
+              <img :src="img.img" :alt="img.name" />
+              <h5 class="img-text">{{ img.name }}</h5>
+             
             </div>
           </div>
         </div>
@@ -44,7 +30,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    for(let i = 0; i < this.img.length; i++) {
+      this.images.push({
+        img: this.img[i],
+        name: this.names[i]
+      })
+    }
+   
+  },
+  data() {
+    return {
+      images: [],
+      img: ['capeTown.jpg', 'london.jpg', 'louvre.jpg', 'newYork.jpg', 'scotland.jpg', 'sydney.jpg'],
+      names: ['capetown', 'london', 'louvre', 'new york', 'scotland', 'sydney']
+    }
+  },
+  methods: {
+    
+  }
+};
 </script>
 
 
@@ -66,6 +72,16 @@ export default {};
 .right-wrap {
   display: flex;
   flex-wrap: wrap;
+}
+
+.img-text {
+  position: absolute;
+  bottom: 0;
+ margin:0;
+  color:white;
+  background-color:rgba(0, 0, 0, 0.514);
+  width:100%;
+  padding:10px 0 10px 10px;
 }
 
 .right-wrap {
@@ -93,6 +109,7 @@ export default {};
   padding: 0;
 }
 .pics {
+  position: relative;
   width: 50%;
   height: 200px;
 }

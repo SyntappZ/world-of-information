@@ -146,6 +146,7 @@ h3 {
 }
 h5 {
   text-align: center;
+ 
 }
 h6 {
   font-weight: 700;
