@@ -18,7 +18,6 @@
       <div class="row">
         <div class="grey-top">
           <h5 class="mb4 center-align">{{ title }}</h5>
-          
         </div>
         <form @submit.prevent="getInput" class="input-field col s12">
           <input v-model="searching" id="search" type="text" />
@@ -50,12 +49,13 @@ export default {
       searching: "",
       title: "",
       getUrls: [],
+
       backup: [],
       nameArray: [],
       fullArray: [],
       imagesArray: [],
       merged: [],
-      loop: 20
+      loop: 10
     };
   },
   methods: {
@@ -70,67 +70,21 @@ export default {
     getTitle() {
       this.title = this.searching[0].toUpperCase() + this.searching.slice(1);
     },
-    getImage() {
-      for (let i = 0; i < this.loop; i++) {
-        axios({
-          method: "get",
-          url:
-            "https://api.imgur.com/3/gallery/search/top?q=" + this.nameArray[i],
-
-          headers: {
-            Authorization: "Client-ID 51bba8fc11cf83f"
-          }
-        })
-          .then(response => {
-            this.imagesArray = [];
-            this.images = [];
-           // console.log(response)
-            let images = response.data.data;
-
-            let removeVids = images.filter(x => x.type != "video/mp4");
-            removeVids.forEach(x => {
-              let url = "";
-              let reg = new RegExp(/.png$|.jpg$|.gif$/);
-
-              let linkCheck = reg.test(x.link);
-              if (linkCheck) {
-                url = x.link;
-              } else {
-                url = "error";
-              }
-
-              this.imagesArray.push({
-                title: x.title,
-                url: url
-              });
-            });
-
-            let removeError = this.imagesArray.filter(x => x.url !== "error");
-            let pic = removeError[0];
-
-            this.merged.push({ ...this.fullArray[i], ...pic });
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      }
-      store.commit("getArray", this.merged);
-      this.searching = "";
-    },
     backupImages() {
       this.backup = [];
       this.getUrls = [];
+
       axios({
         method: "get",
         url: "https://api.imgur.com/3/gallery/search/top?q=" + this.searching,
-        
+
         headers: {
           Authorization: "Client-ID 51bba8fc11cf83f"
         }
       })
         .then(response => {
           let images = response.data.data;
-       console.log(response)
+
           let removeVids = images.filter(x => x.type != "video/mp4");
           removeVids.forEach(x => {
             let url = "";
@@ -141,9 +95,8 @@ export default {
             } else {
               url = x.images[0].link;
             }
-            
+
             this.getUrls.push(url);
-            
           });
           for (let i = 0; i < this.loop; i++) {
             let rand = this.getUrls[
@@ -151,29 +104,25 @@ export default {
             ];
 
             this.backup.push(rand);
-            
           }
+
           this.getWiki();
         })
         .catch(function(error) {
           console.log(error);
         });
     },
-
     getWiki() {
-      let url = "http://en.wikipedia.org/w/api.php?action=opensearch&limit=20&search=";
+      let url =
+        "http://en.wikipedia.org/w/api.php?action=opensearch&limit=10&search=";
       axios
         .get(url + this.searching + "&origin=*")
         .then(response => {
-         
           response.data[1].forEach(x => {
-            let rem = x.replace(/[:,/-]/g, " ");
-              
-            this.nameArray.push(rem);
+            this.nameArray.push(x);
           });
 
           for (let i = 0; i < this.loop; i++) {
-            
             let name = "";
             let cut = response.data[1][i].split(" ");
             cut.length = 3;
@@ -183,6 +132,7 @@ export default {
             } else {
               name = cut;
             }
+
             this.fullArray.push({
               name: name,
               info: response.data[2][i],
@@ -191,12 +141,74 @@ export default {
               fullName: response.data[1][i]
             });
           }
-           
+
           this.getImage();
         })
         .catch(function(error) {
           console.log(error);
         });
+    },
+    async getImage() {
+      for (let i = 0; i < this.nameArray.length; i++) {
+        await axios({
+          method: "get",
+          url: "http://en.wikipedia.org/w/api.php",
+          params: {
+            action: "query",
+            titles: this.nameArray[i],
+            format: "json",
+            prop: "images",
+            iiprop: "url",
+            origin: "*"
+          }
+        })
+          .then(response => {
+            let id = Object.keys(response.data.query.pages);
+
+            let images = response.data.query.pages[id].images.map(x =>
+              x.title.replace("File:", "").replace(/ /g, "_")
+            );
+
+            let check = (images = images.filter(x => x.match(/.jpg$|.png$/i)));
+
+            if (check.length == 0) {
+              images = ["empty"];
+            }
+
+            this.convertUrl(images[0], i);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    },
+    convertUrl(image, i) {
+      axios({
+        method: "get",
+        url: "http://en.wikipedia.org/w/api.php",
+        params: {
+          action: "query",
+          titles: "Image:" + image,
+          format: "json",
+          prop: "imageinfo",
+          iiprop: "url",
+          origin: "*"
+        }
+      }).then(response => {
+        let page = response.data.query.pages;
+        let id = Object.keys(page);
+        let title = page[id].title;
+        let url = "";
+
+        if (title != "File:Empty") {
+          url = page[id].imageinfo[0].url;
+        }
+
+        this.merged.push({ ...this.fullArray[i], ...{ url: url } });
+
+        store.commit("getArray", this.merged);
+      }).catch = error => console.log(error);
+      this.searching = "";
     }
   },
   computed: {}
@@ -223,12 +235,8 @@ export default {
   border-top-right-radius: 5px;
 }
 
- 
-
 .btns:hover {
-   background-color: rgb(224, 224, 224);
-  
-
+  background-color: rgb(224, 224, 224);
 }
 .img-wrap {
   width: 100px;
@@ -271,37 +279,33 @@ h2 {
 }
 .input-field {
   margin-top: 30px;
-  
 }
 .input-field input[type="text"]:focus + label {
   color: #fff;
-
 }
 #search:focus {
   border-bottom: solid #fff 1px;
   box-shadow: 0 1px 0 0 #fff;
-   
 }
 @media (max-width: 600px) {
   blockquote {
-  font-size:11px;
-}
-.search {
-  background: rgba(48, 48, 48, 0.247);
-  width:100%;
-}
-.top {
-  padding: 50px 0;
-}
-br {
-  display:none;
-}
-h6 {
-  line-height: 20px;
-}
-.grey-top {
-  
- border-radius:0;
-}
+    font-size: 11px;
+  }
+  .search {
+    background: rgba(48, 48, 48, 0.247);
+    width: 100%;
+  }
+  .top {
+    padding: 50px 0;
+  }
+  br {
+    display: none;
+  }
+  h6 {
+    line-height: 20px;
+  }
+  .grey-top {
+    border-radius: 0;
+  }
 }
 </style>

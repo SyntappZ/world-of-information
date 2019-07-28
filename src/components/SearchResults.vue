@@ -4,7 +4,7 @@
       <div class="col s12 m6 lg6" v-for="(wiki, i) in wikiArray" :key="i">
         <div class="card hoverable center-align">
           <div class="card-image waves-effect waves-block waves-light">
-            <img class="activator img" :src="wiki.url || wiki.backup" :title="wiki.desc" />
+            <img class="activator img" :src="wiki.url || wiki.backup" />
           </div>
           <div class="card-content">
             <span class="card-title activator grey-text text-darken-4">
