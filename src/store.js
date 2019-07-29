@@ -6,11 +6,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    wikiArray: []
+    wikiArray: [],
+    image: ''
   },
   mutations: {
     getArray(state, arr) {
      state.wikiArray = arr
+    },
+    imageSearch(state, img) {
+      state.image = img
+      console.log(state.image)
     }
   },
   actions: {},
