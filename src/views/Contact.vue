@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col form s12 m6 l6">
           <div class="row">
-            <form class="col s12" netlify-honeypot="bot-field" data-netlify="true">
+            <form class="col s12">
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">person</i>
@@ -43,7 +43,7 @@
                   <label for="message">Message</label>
                 </div>
               </div>
-              <button class="btns">send</button>
+             
             </form>
           </div>
         </div>
