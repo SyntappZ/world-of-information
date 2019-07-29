@@ -7,19 +7,22 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     wikiArray: [],
-    image: ''
+    welcomeImage: "",
+    openSearch: false
   },
   mutations: {
     getArray(state, arr) {
-     state.wikiArray = arr
+      state.wikiArray = arr;
     },
-    imageSearch(state, img) {
-      state.image = img
-      console.log(state.image)
+    getImage(state, img) {
+      state.welcomeImage = img;
+      state.openSearch = true;
     }
   },
   actions: {},
   getters: {
-    wikiArray: state => state.wikiArray
+    wikiArray: state => state.wikiArray,
+    openSearch: state => state.openSearch,
+    welcomeImage: state => state.welcomeImage
   }
 });

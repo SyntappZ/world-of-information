@@ -35,6 +35,13 @@ import axios from "axios";
 import { setTimeout } from "timers";
 
 export default {
+  mounted() {
+   
+    
+  },
+   destroyed() {
+   this.$store.state.wikiArray = [];
+  },
   data() {
     return {
       title: ""
@@ -43,6 +50,14 @@ export default {
   methods: {},
   computed: {
     ...mapGetters(["wikiArray"])
+  },
+  watch: {
+    // wikiArray(newVal, oldVal) {
+    //   console.log(oldVal)
+    //    console.log(newVal)
+   
+    // }
+    
   }
 };
 </script>

@@ -37,13 +37,29 @@
 
 <script>
 import searchResults from "../components/SearchResults";
+
 import store from "../store";
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
   components: {
     searchResults
   },
-  mounted() {},
+  mounted() {
+    if(this.openSearch) {
+      this.searching = this.welcomeImage;
+      this.getInput();
+      this.$store.state.openSearch = false;
+      this.$store.openSearch = false;
+    }
+  },
+  destroyed() {
+    this.nameArray = [];
+      this.fullArray = [];
+      this.merged = [];
+       this.backup = [];
+      this.getUrls = [];
+  },
   data() {
     return {
       searching: "",
@@ -208,10 +224,17 @@ export default {
 
         store.commit("getArray", this.merged);
       }).catch = error => console.log(error);
+      
+      
       this.searching = "";
     }
   },
-  computed: {}
+  computed: {
+     ...mapGetters(["openSearch", "welcomeImage"])
+  },
+   watch: {
+   
+  }
 };
 </script>
 

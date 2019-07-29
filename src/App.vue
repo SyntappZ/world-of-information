@@ -78,6 +78,7 @@ h6 {
 .link {
   font-weight: 450;
   letter-spacing: 2px;
+  padding:20px 0;
 }
 
 #nav a {

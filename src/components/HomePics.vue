@@ -6,7 +6,11 @@
           <div class="left-box">
             <div class="pics" v-for="img in images" :key="img.name">
               <img @click="searchImage(img.name)" :src="img.img" :alt="img.name" />
-              <h5 class="img-text">{{ img.name }}</h5>
+
+              <h5 class="img-text">
+                {{ img.name }}
+                <i class="arrow fas fa-long-arrow-alt-right"></i>
+              </h5>
             </div>
           </div>
         </div>
@@ -30,6 +34,7 @@
 
 <script>
 import store from "../store";
+
 export default {
   created() {
     for (let i = 0; i < this.img.length; i++) {
@@ -55,7 +60,8 @@ export default {
   },
   methods: {
     searchImage(name) {
-      store.commit("imageSearch", name);
+      store.commit("getImage", name);
+      this.$router.push("/Search");
     }
   }
 };
@@ -90,6 +96,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.514);
   width: 100%;
   padding: 10px 0 10px 10px;
+  transition: 0.4s;
 }
 
 .right-wrap {
@@ -120,12 +127,28 @@ export default {
   position: relative;
   width: 50%;
   height: 200px;
+  overflow: hidden;
 }
 img {
   object-fit: cover;
   width: 100%;
   height: 200px;
   cursor: pointer;
+  transition: 0.4s;
+}
+.arrow {
+  position: relative;
+  opacity: 0;
+  top: 3px;
+  transition: ease-in-out 0.4s;
+}
+img:hover {
+  transform: scale(1.1);
+  opacity: .9;
+}
+img:hover + .img-text i {
+  opacity: 1;
+  padding-left: 5px;
 }
 
 @media (max-width: 1024px) {

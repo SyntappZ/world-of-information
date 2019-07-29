@@ -54,7 +54,7 @@ export default {
 <style scoped>
 .pageFooter {
   width: 100%;
-  min-height: 35vh;
+  min-height: 250px;
   height: auto;
   background-color: #333;
   position: relative;
@@ -69,9 +69,9 @@ export default {
   background: rgb(54, 117, 235);
 }
 .icon-wrap {
-  padding-top: 20px;
+  padding-top: 25px;
   display: flex;
-  width: 300px;
+  width: 450px;
   justify-content: space-around;
   margin: 5px;
 }
@@ -84,17 +84,17 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #000;
+  
 }
 .icon:hover {
   background-color: rgb(87, 140, 238);
 }
 .icon a {
-  color: black;
+  color: #333;
 }
 
 .link {
-  padding: 0 50px;
+  padding: 0 6vw;
   color: white;
   letter-spacing: 2px;
 }
@@ -122,4 +122,5 @@ export default {
     padding: 0 20px;
   }
 }
+
 </style>
