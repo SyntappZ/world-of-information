@@ -9,7 +9,8 @@
           <h3 class="glow">Contact</h3>
           <h6 class="sub">
             Thanks for visiting world of information
-            <br /> send me a message or check out <br> my other projects.
+            <br />send me a message or check out
+            <br />my other projects.
           </h6>
           <i class="fas fa-arrow-down"></i>
         </div>
@@ -20,8 +21,7 @@
       <div class="row">
         <div class="col form s12 m6 l6">
           <div class="row">
-            <form class="col s12"  method="POST"  netlify-honeypot="bot-field" data-netlify="true">
-             
+            <form class="col s12" method="POST" netlify-honeypot="bot-field" data-netlify="true">
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">person</i>
@@ -46,21 +46,29 @@
             </form>
           </div>
         </div>
-        <div class=" col s12 m6 l6">
+        <div class="col s12 m6 l6">
           <h5>Other Projects</h5>
           <div class="projects">
             <div class="row project">
-            <h6>The Vault: <a class="link" target="_blank" href="http://the-vault.ml">http://the-vault.ml</a></h6>
-          </div>
-          <div class="row project">
-            <h6>Angels & Demons: <a class="link" target="_blank" href="#">http://angels-and-demons.ml</a></h6>
-          </div>
+              <h6>
+                The Vault:
+                <a class="link" target="_blank" href="http://the-vault.ml">http://the-vault.ml</a>
+              </h6>
+            </div>
+            <div class="row project">
+              <h6>
+                Angels & Demons:
+                <a class="link" target="_blank" href="#">http://angels-and-demons.ml</a>
+              </h6>
+            </div>
 
-          <div class="row project">
-            <h6>Fusion Ninja App: <a class="link" target="_blank" href="#">https://play.google.com</a></h6>
+            <div class="row project">
+              <h6>
+                Fusion Ninja App:
+                <a class="link" target="_blank" href="#">https://play.google.com</a>
+              </h6>
+            </div>
           </div>
-          </div>
-          
         </div>
       </div>
     </div>
@@ -88,15 +96,14 @@ export default {
   padding: 100px 0;
 }
 .sub {
-   color: rgb(194, 194, 194);
+  color: rgb(194, 194, 194);
 }
 .projects {
-  padding-left:50px;
+  padding-left: 50px;
 }
 .project {
   padding: 30px 0;
   text-align: left;
-  
 }
 .prefix {
   color: #fff;
@@ -151,7 +158,6 @@ h3 {
 }
 h5 {
   text-align: center;
- 
 }
 h6 {
   font-weight: 700;
@@ -163,50 +169,44 @@ h6 {
 }
 .link {
   letter-spacing: 1px;
-  padding-left:10px;
+  padding-left: 10px;
   font-size: 12px;
-  color:rgb(211, 211, 211);
+  color: rgb(211, 211, 211);
 }
 .link:hover {
-  color:white;
-   text-shadow: 0 0 20px #fff;
-
+  color: white;
+  text-shadow: 0 0 20px #fff;
 }
-@media (max-width: 1024px){
- .project {
-  padding:10px 0;
-  text-align: center;
-  
-}
- .form {
-    padding:20px;
-    
-  }
-.projects {
-  padding: 20px 0 10px 0;
-}
-.link{
-  display: block;
-  padding:15px 0 0 0;
-}
-@media (max-width: 600px) {
-  .contact {
-    padding-bottom: 30px;
-    height: auto;
- 
-  }
-  .top {
-  padding: 30px 0;
-}
-  br {
-    display:none;
+@media (max-width: 1024px) {
+  .project {
+    padding: 10px 0;
+    text-align: center;
   }
   .form {
-    padding:5px;
-    box-sizing: content-box;
+    padding: 20px;
   }
-}
-
-
+  .projects {
+    padding: 20px 0 10px 0;
+  }
+  .link {
+    display: block;
+    padding: 15px 0 0 0;
+  }
+  @media (max-width: 600px) {
+    .contact {
+      padding-bottom: 30px;
+      height: auto;
+    }
+    .top {
+      padding: 30px 0;
+    }
+    br {
+      display: none;
+    }
+    .form {
+      padding: 5px;
+      box-sizing: content-box;
+    }
+  }
 }
 </style>

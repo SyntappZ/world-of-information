@@ -14,7 +14,7 @@
                 one word.
               </p>
               <button class="btns waves-effect waves-light">
-                 <router-link class="link" to="/Search">Search</router-link>
+                <router-link class="link" to="/Search">Search</router-link>
               </button>
             </div>
           </div>
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <div class=" center-align page-break">
+    <div class="center-align page-break">
       <h4 class="place">{{ places }}</h4>
     </div>
   </div>
@@ -64,10 +64,9 @@ export default {
 .right-welcome img {
   width: 100%;
 }
-.link{
+.link {
   color: rgb(54, 117, 235);
 }
-
 
 .page-top {
   min-height: 92vh;
@@ -80,27 +79,26 @@ export default {
 
 @media (max-width: 1024px) {
   .page-top {
-  min-height: 0;
-}
- .left-welcome,
+    min-height: 0;
+  }
+  .left-welcome,
   .right-welcome {
     margin: 15vh 0;
-    height:auto;
+    height: auto;
   }
 }
 @media (max-width: 600px) {
   .left-welcome,
   .right-welcome {
     margin: 5vh 0;
-    height:auto;
+    height: auto;
   }
-  
+
   .left-welcome h3 {
     font-size: 30px;
   }
   .page-break h4 {
     font-size: 14px;
   }
-  
 }
 </style>

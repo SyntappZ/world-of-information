@@ -73,7 +73,7 @@ export default {
   display: flex;
   width: 300px;
   justify-content: space-around;
-  margin:5px;
+  margin: 5px;
 }
 .icon {
   width: 50px;
@@ -85,7 +85,6 @@ export default {
   justify-content: center;
   align-items: center;
   color: #000;
-  
 }
 .icon:hover {
   background-color: rgb(87, 140, 238);
@@ -116,11 +115,8 @@ export default {
   }
 }
 @media (max-width: 600px) {
- 
   .icon-wrap {
-    
     width: 100%;
-   
   }
   .link {
     padding: 0 20px;
