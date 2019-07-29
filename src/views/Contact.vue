@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col form s12 m6 l6">
           <div class="row">
-            <form class="col s12" method="POST" netlify-honeypot="bot-field" data-netlify="true">
+            <form class="col s12" netlify-honeypot="bot-field" data-netlify="true">
               <div class="row">
                 <div class="input-field col s12">
                   <i class="material-icons prefix">person</i>
@@ -53,7 +53,7 @@
             <div class="row project">
               <h6>
                 The Vault:
-                <a class="link" target="_blank" href="https://the-vault.ml">http://the-vault.ml</a>
+                <a class="link" target="_blank" href="https://the-vault.ml">https://the-vault.ml</a>
               </h6>
             </div>
             <div class="row project">

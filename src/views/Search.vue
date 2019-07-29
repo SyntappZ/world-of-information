@@ -6,7 +6,7 @@
           <div class="img-wrap">
             <img src="earth.png" />
           </div>
-          <h3 class="glow">Search jeff</h3>
+          <h3 class="glow">Search</h3>
           <h6>
             For best results search for one or two words.
             <br />Examples: bob, france, superman...
