@@ -43,6 +43,7 @@
                   <label for="message">Message</label>
                 </div>
               </div>
+              <button class="btns">send</button>
             </form>
           </div>
         </div>
