@@ -27,7 +27,7 @@ EDIT: I have now implemented a better image search from wiki so now they make mo
  
  ## known bugs/improvements
  
- - needs a better search
+ - needs a better image search (mostly fixed)
  
  ## images 
  
