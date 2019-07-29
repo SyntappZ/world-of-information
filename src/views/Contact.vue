@@ -53,13 +53,13 @@
             <div class="row project">
               <h6>
                 The Vault:
-                <a class="link" target="_blank" href="http://the-vault.ml">http://the-vault.ml</a>
+                <a class="link" target="_blank" href="https://the-vault.ml">http://the-vault.ml</a>
               </h6>
             </div>
             <div class="row project">
               <h6>
                 Angels & Demons:
-                <a class="link" target="_blank" href="#">http://angels-and-demons.ml</a>
+                <a class="link" target="_blank" href="#">https://angels-and-demons.ml</a>
               </h6>
             </div>
 

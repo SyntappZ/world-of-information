@@ -6,7 +6,7 @@
           <div class="img-wrap">
             <img src="earth.png" />
           </div>
-          <h3 class="glow">Search</h3>
+          <h3 class="glow">Search jeff</h3>
           <h6>
             For best results search for one or two words.
             <br />Examples: bob, france, superman...
@@ -114,7 +114,7 @@ export default {
     },
     getWiki() {
       let url =
-        "http://en.wikipedia.org/w/api.php?action=opensearch&limit=10&search=";
+        "https://en.wikipedia.org/w/api.php?action=opensearch&limit=10&search=";
       axios
         .get(url + this.searching + "&origin=*")
         .then(response => {
@@ -152,7 +152,7 @@ export default {
       for (let i = 0; i < this.nameArray.length; i++) {
         await axios({
           method: "get",
-          url: "http://en.wikipedia.org/w/api.php",
+          url: "https://en.wikipedia.org/w/api.php",
           params: {
             action: "query",
             titles: this.nameArray[i],
@@ -185,7 +185,7 @@ export default {
     convertUrl(image, i) {
       axios({
         method: "get",
-        url: "http://en.wikipedia.org/w/api.php",
+        url: "https://en.wikipedia.org/w/api.php",
         params: {
           action: "query",
           titles: "Image:" + image,
