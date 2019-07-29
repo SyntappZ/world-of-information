@@ -1,5 +1,5 @@
 # world of information
-welcome to the woi
+welcome to the woi this is wiki snippet search application.
 
 ## making this project
 
