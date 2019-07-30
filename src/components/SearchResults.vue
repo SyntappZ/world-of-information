@@ -2,7 +2,7 @@
   <div class="container wiki">
     <div class="row">
       <div class="col s12 m6 lg6" v-for="(wiki, i) in wikiArray" :key="i">
-        <div class="card hoverable center-align">
+        <div class="card hoverable">
           <div class="card-image waves-effect waves-block waves-light">
             <img class="activator img" :src="wiki.url || wiki.backup" />
           </div>
@@ -52,11 +52,7 @@ export default {
     ...mapGetters(["wikiArray"])
   },
   watch: {
-    // wikiArray(newVal, oldVal) {
-    //   console.log(oldVal)
-    //    console.log(newVal)
    
-    // }
     
   }
 };
@@ -68,12 +64,11 @@ export default {
 }
 
 .card {
-  margin: 20px auto;
   color: #333;
 }
 img {
   width: 100%;
-  height: 400px;
+  height: 350px;
   object-fit: cover;
 }
 @media (max-width: 800px) {
