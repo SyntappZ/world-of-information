@@ -33,6 +33,7 @@ EDIT: I have now implemented a better image search from wiki so now they make mo
  
 ![2019-07-29 (4)](https://user-images.githubusercontent.com/42116608/62015576-b6bb6c80-b1a4-11e9-94ab-43e359616300.png)
 
+![2019-07-30 (2)](https://user-images.githubusercontent.com/42116608/62127244-83263280-b2c9-11e9-88fa-afa4bbcb7da6.png)
 
 ![2019-07-29 (5)](https://user-images.githubusercontent.com/42116608/62015577-b6bb6c80-b1a4-11e9-88f8-fc14ab7fa284.png)
 
