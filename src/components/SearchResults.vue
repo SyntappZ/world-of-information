@@ -68,7 +68,7 @@ export default {
 }
 img {
   width: 100%;
-  height: 350px;
+  height: 450px;
   object-fit: cover;
 }
 @media (max-width: 800px) {
