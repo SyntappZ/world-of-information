@@ -59,14 +59,14 @@
             <div class="row project">
               <h6>
                 Angels & Demons:
-                <a class="link" target="_blank" href="#">https://angels-and-demons.ml</a>
+                <a class="link" target="_blank" href="https://angels-and-demons.netlify.com/">https://angels-and-demons.netlify.com/</a>
               </h6>
             </div>
 
             <div class="row project">
               <h6>
                 Fusion Ninja App:
-                <a class="link" target="_blank" href="#">https://play.google.com</a>
+                <a class="link" target="_blank" href="https://play.google.com/store/apps/details?id=io.syntappz.fusion">https://play.google.com/store/apps/details?id=io.syntappz.fusion</a>
               </h6>
             </div>
           </div>
