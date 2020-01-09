@@ -1,3 +1,5 @@
+## api rules have changed so this no longer works as it did!
+
 # world of information
 welcome to the woi this is wiki snippet search application.
 
